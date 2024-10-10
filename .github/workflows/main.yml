@@ -3,7 +3,7 @@ name: Deploy to AWS Amplify
 on:
   push:
     branches:
-      - main # Deploy when code is pushed to the "main" branch
+      - main
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Ensure Node.js version matches your project needs
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
@@ -38,11 +38,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Checkout enviroment
-        run: amplify env checkout dev [--restore]
+      - name: Checkout Amplify env's
+        run: |
+          echo Checkout for env's start
+          amplify env list
+          echo Checkout for env's over
 
       - name: Amplify CLI - Publish
         run: |
           npm install -g @aws-amplify/cli
           amplify  amplify pull --appId d7irc7oy3gqfl --envName dev
+          amplify 
           amplify publish --yes
