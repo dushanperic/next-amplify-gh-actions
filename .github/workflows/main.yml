@@ -32,11 +32,11 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          env: dev
           aws-region: us-east-1
 
       - name: Amplify CLI - Publish
         run: |
           npm install -g @aws-amplify/cli
           amplify  amplify pull --appId d7irc7oy3gqfl --envName dev
+          amplify env checkout dev [--restore]
           amplify publish --yes
