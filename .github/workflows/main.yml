@@ -1,9 +1,9 @@
-name: Deploy to Amplify
+name: Deploy to AWS Amplify
 
 on:
   push:
     branches:
-      - main
+      - main # Deploy when code is pushed to the "main" branch
 
 jobs:
   deploy:
@@ -13,17 +13,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Amplify CLI
-        run: npm install -g @aws-amplify/cli
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Ensure Node.js version matches your project needs
 
-      - name: Configure Amplify
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the Next.js app
+        run: npm run build
+
+      - name: Install AWS CLI
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-
-
-      - name: Deploy to Amplify
-        run: amplify publish
+      - name: Amplify CLI - Publish
+        run: |
+          npm install -g @aws-amplify/cli
+          amplify publish --yes
