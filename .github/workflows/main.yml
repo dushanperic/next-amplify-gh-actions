@@ -37,4 +37,5 @@ jobs:
       - name: Amplify CLI - Publish
         run: |
           npm install -g @aws-amplify/cli
+          amplify pull
           amplify publish --yes
