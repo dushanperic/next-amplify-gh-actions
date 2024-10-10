@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ghactions-dev-bff54-authRole",
+      "UnauthRoleArn": "arn:aws:iam::418295696663:role/amplify-ghactions-dev-bff54-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::418295696663:role/amplify-ghactions-dev-bff54-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-ghactions-dev-bff54-deployment",
+      "UnauthRoleName": "amplify-ghactions-dev-bff54-unauthRole",
+      "StackName": "amplify-ghactions-dev-bff54",
+      "StackId": "arn:aws:cloudformation:us-east-1:418295696663:stack/amplify-ghactions-dev-bff54/613f4b60-8731-11ef-b65e-0affc335abeb",
+      "AmplifyAppId": "d7irc7oy3gqfl"
+    }
+  }
+}
